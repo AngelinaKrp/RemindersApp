@@ -27,7 +27,6 @@ class SearchTableViewCell: UITableViewCell {
     func configuree(with list: MyList, model: Note) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
-        //selectionStyle = .none
         idOfList = list.id
         idOfNote = model.id
         
