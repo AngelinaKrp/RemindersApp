@@ -44,7 +44,7 @@ class NewReminderTableViewController: UITableViewController {
                 }
             }
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     @IBAction func choosenListToSave(segue:UIStoryboardSegue) {
