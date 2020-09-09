@@ -12,7 +12,7 @@ class ListsToSaveTableViewController: UITableViewController {
     
     // MARK: - Private properties
     
-    var lists:[String]!
+    var lists: [String]!
     var selectedListString: String? = nil
     var selectedListIndex: Int? = nil
     var selectedLastListString: String? = nil
