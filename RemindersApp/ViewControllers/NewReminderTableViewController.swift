@@ -32,10 +32,8 @@ class NewReminderTableViewController: UITableViewController {
     
     @IBAction func addButton(_ sender: Any) {
         if titleLabel.text != "" {
-             
             for each in MyList.myLists {
                 if selectedListToSave == each.title {
-                  
                     if let idOfLastList = MyList.myLists[each.id].notesInList.last?.id {
                         MyList.myLists[each.id].addNote(with: idOfLastList + 1, title: titleLabel.text!, description: descriptionLabel.text!)
                         print("\(MyList.myLists[each.id].notesInList)")
