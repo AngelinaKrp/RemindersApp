@@ -18,16 +18,16 @@ final class NoteCell: UITableViewCell {
     
     // MARK: - Private properties
     
-    var idOfNote: Int?
-    var idOfList: Int?
+    var noteId: Int?
+    var listId: Int?
     
     // MARK: - Public methods
     
     func configuree(with list: MyList, model: Note) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
-        idOfList = list.id
-        idOfNote = model.id
+        listId = list.id
+        noteId = model.id
         
         if model.done == true {
             checkButton.isSelected = true
@@ -46,15 +46,15 @@ final class NoteCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @objc func checkButtonClickes (sender: UIButton) {
+    @objc func checkButtonClickes(sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
             titleLabel.alpha = 1
             subtitleLabel.alpha = 1
             
-            for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
-                if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[idOfList!].notesInList[noteToSaveId].done = false
+            for noteToSaveId in 0...MyList.myLists[listId!].notesInList.count - 1 {
+                if MyList.myLists[listId!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[listId!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.myLists[listId!].notesInList[noteToSaveId].done = false
                 }
             }
         } else {
@@ -62,12 +62,11 @@ final class NoteCell: UITableViewCell {
             titleLabel.alpha = 0.4
             subtitleLabel.alpha = 0.4
             
-            for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
-                if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[idOfList!].notesInList[noteToSaveId].done = true
+            for noteToSaveId in 0...MyList.myLists[listId!].notesInList.count - 1 {
+                if MyList.myLists[listId!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[listId!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.myLists[listId!].notesInList[noteToSaveId].done = true
                 }
             }
         }
     }
 }
-
