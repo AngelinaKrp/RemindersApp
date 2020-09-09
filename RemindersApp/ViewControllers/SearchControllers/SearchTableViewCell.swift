@@ -17,7 +17,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var checkButton: UIButton!
     
     // MARK: - Private properties
-    
+    // Change private?
     static let reusableId = "SearchTableViewCell"
     var idOfNote: Int?
     var idOfList: Int?
