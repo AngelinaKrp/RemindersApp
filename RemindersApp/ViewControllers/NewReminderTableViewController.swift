@@ -18,6 +18,7 @@ class NewReminderTableViewController: UITableViewController {
     @IBOutlet weak var listForRemindersCell: UITableViewCell!
     
     // MARK: - Private properties
+    
     let numberOfSections: Int = 2
     var selectedListToSave: String = ""
     var listToSave: MyList?
