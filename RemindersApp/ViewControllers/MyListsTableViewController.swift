@@ -39,8 +39,6 @@ final class MyListsTableViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: searchResultsController)
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-        
-        tableView.isScrollEnabled = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,9 +50,9 @@ final class MyListsTableViewController: UITableViewController {
     @objc func getAmountOfMyLists() {
         newLabelDetail.text = String(MyList.myLists[0].amountOfReminders)
         swiftHwLabelDetail.text = String(MyList.myLists[1].amountOfReminders)
-        educationLabelDetail.text  = String(MyList.myLists[2].amountOfReminders)
-        podcastsLabelDetail.text  = String(MyList.myLists[3].amountOfReminders)
-        booksLabelDetail.text  = String(MyList.myLists[4].amountOfReminders)
+        educationLabelDetail.text = String(MyList.myLists[2].amountOfReminders)
+        podcastsLabelDetail.text = String(MyList.myLists[3].amountOfReminders)
+        booksLabelDetail.text = String(MyList.myLists[4].amountOfReminders)
     }
     
     // MARK: - Table view delegate
@@ -95,17 +93,14 @@ final class MyListsTableViewController: UITableViewController {
 
 extension MyListsTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
         guard let queryText = searchController.searchBar.text else {
             return
         }
-        if queryText.isEmpty {
-            for i in  0...MyList.myLists.count-1 {
-                copyOfMyLists[i].notesInList.removeAll()
-            }
-        } else {
-            for i in  0...MyList.myLists.count-1 {
-                copyOfMyLists[i].notesInList.removeAll()
+        for i in 0...MyList.myLists.count - 1 {
+            copyOfMyLists[i].notesInList.removeAll()
+        }
+        if !queryText.isEmpty {
+            for i in 0...MyList.myLists.count - 1 {
                 MyList.myLists[i].notesInList.forEach { note in
                     if note.title.lowercased().contains(queryText.lowercased()) {
                         copyOfMyLists[i].notesInList.append(note)

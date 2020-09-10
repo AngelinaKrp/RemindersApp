@@ -44,16 +44,19 @@ final class NotesTableViewController: UITableViewController {
         
         var color: UIColor = UIColor.black
         
-        if selectedList?.id == 0 {
+        switch selectedList?.id {
+        case 0:
             color = UIColor.red
-        } else if selectedList?.id == 1 {
+        case 1:
             color = UIColor.orange
-        } else if selectedList?.id == 2 {
+        case 2:
             color = UIColor.purple
-        } else if selectedList?.id == 3 {
+        case 3:
             color = UIColor.blue
-        } else if selectedList?.id == 4 {
+        case 4:
             color = UIColor.green
+        default:
+            color = UIColor.black
         }
         
         self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
@@ -117,8 +120,10 @@ final class NotesTableViewController: UITableViewController {
             // Delete the row from the data source
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            MyList.myLists[selectedList!.id].notesInList.remove(at: indexPath.row)
-            MyList.myLists[selectedList!.id].amountOfReminders -= 1
+            if let selectList = selectedList {
+                MyList.myLists[selectList.id].notesInList.remove(at: indexPath.row)
+                MyList.myLists[selectList.id].amountOfReminders -= 1
+            }
         }
     }
     

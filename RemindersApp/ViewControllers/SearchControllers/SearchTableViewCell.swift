@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
@@ -16,13 +16,18 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     
-    // MARK: - Private properties
+    // MARK: - Properties
 
-    static let reusableId = "SearchTableViewCell"
     var idOfNote: Int?
     var idOfList: Int?
+    let textAlpha: CGFloat = 1.0
+    let textAlphaChecked: CGFloat = 0.4
     
-    // MARK: - Private methods
+    // MARK: - Static properties
+    
+    static let reusableId = "SearchTableViewCell"
+    
+    // MARK: - Public methods
     
     func configuree(with list: MyList, model: Note) {
         titleLabel.text = model.title
@@ -32,13 +37,13 @@ class SearchTableViewCell: UITableViewCell {
         
         if model.done == true {
             checkButton.isSelected = true
-            titleLabel.alpha = 0.4
-            subtitleLabel.alpha = 0.4
+            titleLabel.alpha = textAlphaChecked
+            subtitleLabel.alpha = textAlphaChecked
             checkButton.setImage(UIImage(systemName: "checkmark.circle"), for:.normal)
         } else {
             checkButton.isSelected = false
-            titleLabel.alpha = 1
-            subtitleLabel.alpha = 1
+            titleLabel.alpha = textAlpha
+            subtitleLabel.alpha = textAlpha
             checkButton.setImage(UIImage(systemName: "circle"), for:.normal)
         }
     }
@@ -52,8 +57,8 @@ class SearchTableViewCell: UITableViewCell {
         if sender.isSelected {
             sender.isSelected = false
             checkButton.setImage(UIImage(systemName: "circle"), for:.normal)
-            titleLabel.alpha = 1
-            subtitleLabel.alpha = 1
+            titleLabel.alpha = textAlpha
+            subtitleLabel.alpha = textAlpha
 
             for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
                 if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
@@ -62,9 +67,9 @@ class SearchTableViewCell: UITableViewCell {
             }
         } else {
             sender.isSelected = true
-            titleLabel.alpha = 0.4
-            subtitleLabel.alpha = 0.4
-            checkButton.setImage(UIImage(systemName: "checkmark.circle"), for:.normal)
+            titleLabel.alpha = textAlphaChecked
+            subtitleLabel.alpha = textAlphaChecked
+            checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             
             for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
                 if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
