@@ -60,9 +60,9 @@ final class SearchTableViewCell: UITableViewCell {
             titleLabel.alpha = textAlpha
             subtitleLabel.alpha = textAlpha
 
-            for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
-                if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[idOfList!].notesInList[noteToSaveId].done = false
+            for noteToSaveId in 0...MyList.defaultLists[idOfList!].notes.count - 1 {
+                if MyList.defaultLists[idOfList!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[idOfList!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.defaultLists[idOfList!].notes[noteToSaveId].done = false
                 }
             }
         } else {
@@ -71,9 +71,9 @@ final class SearchTableViewCell: UITableViewCell {
             subtitleLabel.alpha = textAlphaChecked
             checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             
-            for noteToSaveId in 0...MyList.myLists[idOfList!].notesInList.count - 1 {
-                if MyList.myLists[idOfList!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[idOfList!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[idOfList!].notesInList[noteToSaveId].done = true
+            for noteToSaveId in 0...MyList.defaultLists[idOfList!].notes.count - 1 {
+                if MyList.defaultLists[idOfList!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[idOfList!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.defaultLists[idOfList!].notes[noteToSaveId].done = true
                 }
             }
         }

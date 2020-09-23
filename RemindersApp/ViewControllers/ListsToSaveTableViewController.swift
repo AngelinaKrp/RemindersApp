@@ -37,7 +37,7 @@ class ListsToSaveTableViewController: UITableViewController {
                  "Podcasts",
                  "Books"]
         
-        MyList.myLists.forEach { list in
+        MyList.defaultLists.forEach { list in
             if list.title == selectedLastListString {
                 selectedListIndex = list.id
                 return

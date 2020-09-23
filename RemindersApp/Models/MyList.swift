@@ -11,23 +11,23 @@ import Foundation
 struct MyList {
     let id: Int
     let title: String
-    var amountOfReminders: Int
-    var notesInList = [Note]()
+    var remindersCount: Int
+    var notes = [Note]()
 }
 
 extension MyList {
     
-    static var myLists: [MyList] = {
+    static var defaultLists: [MyList] = {
         var myLists = [MyList]()
-        myLists.append(MyList(id: 0, title: "New", amountOfReminders: 0))
-        myLists.append(MyList(id: 1, title: "Swift HW", amountOfReminders: 0))
-        myLists.append(MyList(id: 2, title: "Education", amountOfReminders: 0))
-        myLists.append(MyList(id: 3, title: "Podcasts", amountOfReminders: 0))
-        myLists.append(MyList(id: 4, title: "Books", amountOfReminders: 0))
+        myLists.append(MyList(id: 0, title: "New", remindersCount: 0))
+        myLists.append(MyList(id: 1, title: "Swift HW", remindersCount: 0))
+        myLists.append(MyList(id: 2, title: "Education", remindersCount: 0))
+        myLists.append(MyList(id: 3, title: "Podcasts", remindersCount: 0))
+        myLists.append(MyList(id: 4, title: "Books", remindersCount: 0))
         return myLists
     }()
     
     mutating func addNote(with id: Int, title: String, description: String) {
-        notesInList.append(Note(id: id, title: title, description: description))
+        notes.append(Note(id: id, title: title, description: description))
     }
 }

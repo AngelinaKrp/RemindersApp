@@ -32,7 +32,7 @@ final class SearchTableViewController: UITableViewController {
     // MARK: - Public methods
     
     func setNew(results: [MyList]) {
-        self.results = results.filter { $0.notesInList.count != 0 }
+        self.results = results.filter { $0.notes.count != 0 }
     }
     
     // MARK: - Table view data source
@@ -42,13 +42,13 @@ final class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        results[section].notesInList.count
+        results[section].notes.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
-        cell.configuree(with: results[indexPath.section], model: results[indexPath.section].notesInList[indexPath.row])
+        cell.configuree(with: results[indexPath.section], model: results[indexPath.section].notes[indexPath.row])
         return cell
     }
     

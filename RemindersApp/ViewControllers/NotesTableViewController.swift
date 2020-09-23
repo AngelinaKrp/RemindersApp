@@ -83,7 +83,7 @@ final class NotesTableViewController: UITableViewController {
     
     @objc
     private func getNotes() {
-        self.notes = MyList.myLists[selectedList!.id].notesInList
+        self.notes = MyList.defaultLists[selectedList!.id].notes
         self.tableView.reloadData()
     }
     
@@ -121,8 +121,8 @@ final class NotesTableViewController: UITableViewController {
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             if let selectList = selectedList {
-                MyList.myLists[selectList.id].notesInList.remove(at: indexPath.row)
-                MyList.myLists[selectList.id].amountOfReminders -= 1
+                MyList.defaultLists[selectList.id].notes.remove(at: indexPath.row)
+                MyList.defaultLists[selectList.id].remindersCount -= 1
             }
         }
     }

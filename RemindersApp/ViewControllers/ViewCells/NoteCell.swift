@@ -52,9 +52,9 @@ final class NoteCell: UITableViewCell {
             titleLabel.alpha = 1
             subtitleLabel.alpha = 1
             
-            for noteToSaveId in 0...MyList.myLists[listId!].notesInList.count - 1 {
-                if MyList.myLists[listId!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[listId!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[listId!].notesInList[noteToSaveId].done = false
+            for noteToSaveId in 0...MyList.defaultLists[listId!].notes.count - 1 {
+                if MyList.defaultLists[listId!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[listId!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.defaultLists[listId!].notes[noteToSaveId].done = false
                 }
             }
         } else {
@@ -62,9 +62,9 @@ final class NoteCell: UITableViewCell {
             titleLabel.alpha = 0.4
             subtitleLabel.alpha = 0.4
             
-            for noteToSaveId in 0...MyList.myLists[listId!].notesInList.count - 1 {
-                if MyList.myLists[listId!].notesInList[noteToSaveId].title == titleLabel.text && MyList.myLists[listId!].notesInList[noteToSaveId].subtitle == subtitleLabel.text {
-                    MyList.myLists[listId!].notesInList[noteToSaveId].done = true
+            for noteToSaveId in 0...MyList.defaultLists[listId!].notes.count - 1 {
+                if MyList.defaultLists[listId!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[listId!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                    MyList.defaultLists[listId!].notes[noteToSaveId].done = true
                 }
             }
         }

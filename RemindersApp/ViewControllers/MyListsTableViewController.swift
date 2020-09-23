@@ -25,7 +25,7 @@ final class MyListsTableViewController: UITableViewController {
     private var selectedListInLists: MyList?
     private var searchResultsController: SearchTableViewController?
     private var listToSave: MyList?
-    private var copyOfMyLists = MyList.myLists
+    private var copyOfMyLists = MyList.defaultLists
     
     // MARK: - Lifecycle
     
@@ -48,17 +48,17 @@ final class MyListsTableViewController: UITableViewController {
     // MARK: - Private methods
     
     @objc func getAmountOfMyLists() {
-        newLabelDetail.text = String(MyList.myLists[0].amountOfReminders)
-        swiftHwLabelDetail.text = String(MyList.myLists[1].amountOfReminders)
-        educationLabelDetail.text = String(MyList.myLists[2].amountOfReminders)
-        podcastsLabelDetail.text = String(MyList.myLists[3].amountOfReminders)
-        booksLabelDetail.text = String(MyList.myLists[4].amountOfReminders)
+        newLabelDetail.text = String(MyList.defaultLists[0].remindersCount)
+        swiftHwLabelDetail.text = String(MyList.defaultLists[1].remindersCount)
+        educationLabelDetail.text = String(MyList.defaultLists[2].remindersCount)
+        podcastsLabelDetail.text = String(MyList.defaultLists[3].remindersCount)
+        booksLabelDetail.text = String(MyList.defaultLists[4].remindersCount)
     }
     
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedListInLists = MyList.myLists[indexPath.row]
+        selectedListInLists = MyList.defaultLists[indexPath.row]
         performSegue(withIdentifier: "myListSeletedSegue", sender: self)
     }
     
@@ -69,7 +69,7 @@ final class MyListsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        MyList.myLists.count
+        MyList.defaultLists.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -87,7 +87,7 @@ final class MyListsTableViewController: UITableViewController {
             return
         }
         // Pass the selected object to the new view controller.
-        notesViewController.selectedList = MyList.myLists[selectedListInLists!.id]
+        notesViewController.selectedList = MyList.defaultLists[selectedListInLists!.id]
     }
 }
 
@@ -96,14 +96,14 @@ extension MyListsTableViewController: UISearchResultsUpdating {
         guard let queryText = searchController.searchBar.text else {
             return
         }
-        for i in 0...MyList.myLists.count - 1 {
-            copyOfMyLists[i].notesInList.removeAll()
+        for i in 0...MyList.defaultLists.count - 1 {
+            copyOfMyLists[i].notes.removeAll()
         }
         if !queryText.isEmpty {
-            for i in 0...MyList.myLists.count - 1 {
-                MyList.myLists[i].notesInList.forEach { note in
+            for i in 0...MyList.defaultLists.count - 1 {
+                MyList.defaultLists[i].notes.forEach { note in
                     if note.title.lowercased().contains(queryText.lowercased()) {
-                        copyOfMyLists[i].notesInList.append(note)
+                        copyOfMyLists[i].notes.append(note)
                     }
                 }
             }

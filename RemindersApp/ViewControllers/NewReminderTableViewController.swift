@@ -33,15 +33,15 @@ class NewReminderTableViewController: UITableViewController {
     
     @IBAction func addButton(_ sender: Any) {
         if titleLabel.text != "" {
-            for each in MyList.myLists {
+            for each in MyList.defaultLists {
                 if selectedListToSave == each.title {
-                    if let idOfLastList = MyList.myLists[each.id].notesInList.last?.id {
-                        MyList.myLists[each.id].addNote(with: idOfLastList + 1, title: titleLabel.text!, description: descriptionLabel.text!)
-                        print("\(MyList.myLists[each.id].notesInList)")
+                    if let idOfLastList = MyList.defaultLists[each.id].notes.last?.id {
+                        MyList.defaultLists[each.id].addNote(with: idOfLastList + 1, title: titleLabel.text!, description: descriptionLabel.text!)
+                        print("\(MyList.defaultLists[each.id].notes)")
                     } else {
-                        MyList.myLists[each.id].addNote(with: idOfNote, title: titleLabel.text!, description: descriptionLabel.text!)
+                        MyList.defaultLists[each.id].addNote(with: idOfNote, title: titleLabel.text!, description: descriptionLabel.text!)
                     }
-                    MyList.myLists[each.id].amountOfReminders += 1
+                    MyList.defaultLists[each.id].remindersCount += 1
                 }
             }
         }
