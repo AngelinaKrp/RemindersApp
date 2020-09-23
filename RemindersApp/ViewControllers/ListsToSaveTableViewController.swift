@@ -8,16 +8,23 @@
 
 import UIKit
 
-class ListsToSaveTableViewController: UITableViewController {
+final class ListsToSaveTableViewController: UITableViewController {
     
     // MARK: - Private properties
     
-    var lists: [String]!
-    var selectedListString: String? = nil
-    var selectedListIndex: Int? = nil
-    var selectedLastListString: String? = nil
+    private var lists: [String]! = ["New",
+                                    "Swift HW",
+                                    "Education",
+                                    "Podcasts",
+                                    "Books"]
+    private var selectedListIndex: Int? = nil
     private var selectedList: MyList?
     private var numberOfSections: Int = 1
+    
+    // MARK: - Private properties
+    
+    var selectedListString: String? = nil
+    var selectedLastListString: String? = nil
     
     // MARK: - Actions
     
@@ -30,19 +37,47 @@ class ListsToSaveTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        lists = ["New",
-                 "Swift HW",
-                 "Education",
-                 "Podcasts",
-                 "Books"]
-        
+        setSelectedListIndex()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setSelectedListIndex() {
         MyList.defaultLists.forEach { list in
             if list.title == selectedLastListString {
                 selectedListIndex = list.id
                 return
             }
         }
+    }
+    
+    private func setImageView(indexPathRow: Int) -> (UIImage?, UIColor) {
+        
+        let image: UIImage
+        let color: UIColor
+        
+        switch indexPathRow {
+        case 0:
+            image = UIImage(systemName: "list.bullet")!
+            color = UIColor.red
+        case 1:
+            image = UIImage(systemName: "desktopcomputer")!
+            color = UIColor.orange
+        case 2:
+            image = UIImage(systemName: "square.and.pencil")!
+            color = UIColor.purple
+        case 3:
+            image = UIImage(systemName: "music.note")!
+            color = UIColor.blue
+        case 4:
+            image = UIImage(systemName: "book")!
+            color = UIColor.green
+        default:
+            image = UIImage(systemName: "list.bullet")!
+            color = UIColor.black
+        }
+        return (image, color)
+        
     }
     
     // MARK: - Table view delegate
@@ -62,17 +97,14 @@ class ListsToSaveTableViewController: UITableViewController {
         cell?.accessoryType = .checkmark
     }
     
-    @IBAction func selectedList(segue:UIStoryboardSegue) {
-    }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-       numberOfSections
+        numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,26 +112,8 @@ class ListsToSaveTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         cell.textLabel?.text = lists[indexPath.row]
         
-        if indexPath.row == 0 {
-            cell.imageView!.image = UIImage(systemName: "list.bullet")
-            cell.imageView!.tintColor = UIColor.red
-        }
-        if indexPath.row == 1 {
-            cell.imageView!.image = UIImage(systemName: "desktopcomputer")
-            cell.imageView!.tintColor = UIColor.orange
-        }
-        if indexPath.row == 2 {
-            cell.imageView!.image = UIImage(systemName: "square.and.pencil")
-            cell.imageView!.tintColor = UIColor.purple
-        }
-        if indexPath.row == 3 {
-            cell.imageView!.image = UIImage(systemName: "music.note")
-            cell.imageView!.tintColor = UIColor.blue
-        }
-        if indexPath.row == 4 {
-            cell.imageView!.image = UIImage(systemName: "book")
-            cell.imageView!.tintColor = UIColor.green
-        }
+        ///Think with enum!!
+        (cell.imageView!.image, cell.imageView!.tintColor) = setImageView(indexPathRow: indexPath.row)
         
         if indexPath.row == selectedListIndex {
             cell.accessoryType = .checkmark

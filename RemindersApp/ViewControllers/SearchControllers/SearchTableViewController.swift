@@ -45,10 +45,9 @@ final class SearchTableViewController: UITableViewController {
         results[section].notes.count
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
-        cell.configuree(with: results[indexPath.section], model: results[indexPath.section].notes[indexPath.row])
+        cell.configure(with: results[indexPath.section], model: results[indexPath.section].notes[indexPath.row])
         return cell
     }
     

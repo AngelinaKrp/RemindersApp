@@ -16,12 +16,12 @@ final class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     
-    // MARK: - Properties
+    // MARK: - Private properties
 
-    var idOfNote: Int?
-    var idOfList: Int?
-    let textAlpha: CGFloat = 1.0
-    let textAlphaChecked: CGFloat = 0.4
+    private var idOfNote: Int?
+    private var idOfList: Int?
+    private let textAlpha: CGFloat = 1.0
+    private let textAlphaChecked: CGFloat = 0.4
     
     // MARK: - Static properties
     
@@ -29,7 +29,7 @@ final class SearchTableViewCell: UITableViewCell {
     
     // MARK: - Public methods
     
-    func configuree(with list: MyList, model: Note) {
+    func configure(with list: MyList, model: Note) {
         titleLabel.text = model.title
         subtitleLabel.text = model.subtitle
         idOfList = list.id

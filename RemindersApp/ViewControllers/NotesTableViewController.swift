@@ -22,8 +22,9 @@ final class NotesTableViewController: UITableViewController {
     var selectedList: MyList?
     private var notes: [Note] = [] {
         didSet {
-            /// Observe notes changes in `didSet` block
+            // Observe notes changes in `didSet` block
             refreshControl?.endRefreshing()
+            self.tableView.reloadData()
         }
     }
     
@@ -38,6 +39,7 @@ final class NotesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.largeTitleDisplayMode = .always
         NotificationCenter.default.addObserver(self, selector: #selector(getNotes), name: NSNotification.Name(rawValue: "loadReminders"), object: nil)
         
         navigationItem.title = selectedList?.title
@@ -66,12 +68,6 @@ final class NotesTableViewController: UITableViewController {
         getNotes()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.largeTitleDisplayMode = .always
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         
@@ -84,7 +80,6 @@ final class NotesTableViewController: UITableViewController {
     @objc
     private func getNotes() {
         self.notes = MyList.defaultLists[selectedList!.id].notes
-        self.tableView.reloadData()
     }
     
     // MARK: - Table view delegate

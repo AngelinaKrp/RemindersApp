@@ -42,17 +42,19 @@ final class MyListsTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "AmericanTypewriter", size: 35)!]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "AmericanTypewriter", size: 35)!]
     }
     
     // MARK: - Private methods
     
     @objc func getAmountOfMyLists() {
-        newLabelDetail.text = String(MyList.defaultLists[0].remindersCount)
-        swiftHwLabelDetail.text = String(MyList.defaultLists[1].remindersCount)
-        educationLabelDetail.text = String(MyList.defaultLists[2].remindersCount)
-        podcastsLabelDetail.text = String(MyList.defaultLists[3].remindersCount)
-        booksLabelDetail.text = String(MyList.defaultLists[4].remindersCount)
+        if MyList.defaultLists.count == 5 {
+            newLabelDetail.text = String(MyList.defaultLists[0].remindersCount)
+            swiftHwLabelDetail.text = String(MyList.defaultLists[1].remindersCount)
+            educationLabelDetail.text = String(MyList.defaultLists[2].remindersCount)
+            podcastsLabelDetail.text = String(MyList.defaultLists[3].remindersCount)
+            booksLabelDetail.text = String(MyList.defaultLists[4].remindersCount)
+        }
     }
     
     // MARK: - Table view delegate
