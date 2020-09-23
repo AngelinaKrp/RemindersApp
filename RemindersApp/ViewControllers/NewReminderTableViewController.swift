@@ -41,7 +41,6 @@ final class NewReminderTableViewController: UITableViewController {
                 if selectedListToSave == each.title {
                     if let idOfLastList = MyList.defaultLists[each.id].notes.last?.id {
                         MyList.defaultLists[each.id].addNote(with: idOfLastList + 1, title: titleLabel.text ?? "", description: descriptionLabel.text ?? "")
-                        print("\(MyList.defaultLists[each.id].notes)")
                     } else {
                         MyList.defaultLists[each.id].addNote(with: idOfNote, title: titleLabel.text ?? "", description: descriptionLabel.text ?? "")
                     }
@@ -52,7 +51,7 @@ final class NewReminderTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func choosenListToSave(segue:UIStoryboardSegue) {
+    @IBAction func choosenListToSave(segue: UIStoryboardSegue) {
         // Set selected listToSaveLabel
         if let listsToSaveTableViewController = segue.source as? ListsToSaveTableViewController, let selectedListString = listsToSaveTableViewController.selectedListString {
             
