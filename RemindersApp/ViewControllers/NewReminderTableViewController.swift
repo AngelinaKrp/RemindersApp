@@ -91,7 +91,12 @@ final class NewReminderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == setListSection && indexPath.row == setListRow {
-            performSegue(withIdentifier: "toMyListSeletSegue", sender: self)
+         //   performSegue(withIdentifier: "toMyListSeletSegue", sender: self)
+            
+          // present NOT segue
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListsToSaveTableViewController") as! ListsToSaveTableViewController
+            vc.selectedLastListString = selectedListToSave
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     

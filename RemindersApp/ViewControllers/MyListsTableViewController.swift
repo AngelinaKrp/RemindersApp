@@ -66,7 +66,12 @@ final class MyListsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedListInLists = MyList.defaultLists[indexPath.row]
-        performSegue(withIdentifier: "myListSeletedSegue", sender: self)
+        //performSegue(withIdentifier: "myListSeletedSegue", sender: self)
+        
+        // PRESENT
+        let vc = storyboard?.instantiateViewController(withIdentifier: "NotesTableViewController") as! NotesTableViewController
+        vc.selectedList = MyList.defaultLists[selectedListInLists!.id]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Table view data source

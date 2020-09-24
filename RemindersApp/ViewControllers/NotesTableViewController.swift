@@ -87,7 +87,7 @@ final class NotesTableViewController: UITableViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = selectedList?.title
         let color: UIColor = MyColor(rawValue: selectedList!.id)?.toUIColor() ?? UIColor.black
-        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
     }
     // MARK: - Table view delegate
     

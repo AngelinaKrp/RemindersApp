@@ -32,7 +32,7 @@
         <!--My Lists Table View Controller-->
         <scene sceneID="iEG-Mz-qRL">
             <objects>
-                <tableViewController interfaceStyle="light" id="kDb-uL-Hqi" customClass="MyListsTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyListsTableViewController" interfaceStyle="light" id="kDb-uL-Hqi" customClass="MyListsTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Thv-fO-9hj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,7 +219,7 @@
                 <navigationController id="pfZ-Ms-Xin" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sPA-L3-v0C"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PS2-iU-5dc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -254,7 +254,7 @@
         <!--Notes Table View Controller-->
         <scene sceneID="VMb-fw-SyR">
             <objects>
-                <tableViewController id="rY9-cM-Fpl" customClass="NotesTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NotesTableViewController" id="rY9-cM-Fpl" customClass="NotesTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vKM-jW-UFJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -336,7 +336,7 @@
             <objects>
                 <tableViewController id="C9v-hS-aiF" customClass="NewReminderTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="pcb-Vv-Asx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="Reminder" footerTitle="" id="dqO-KR-ZAI">
@@ -462,7 +462,7 @@
         <!--List-->
         <scene sceneID="HhP-WC-6d2">
             <objects>
-                <tableViewController id="xKV-wn-5so" customClass="ListsToSaveTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListsToSaveTableViewController" id="xKV-wn-5so" customClass="ListsToSaveTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="RLq-Jm-e2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -531,7 +531,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b0n-Kj-IH1"/>
+        <segue reference="Ehv-zE-XeQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
