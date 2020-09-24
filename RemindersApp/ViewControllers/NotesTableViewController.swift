@@ -27,6 +27,29 @@ final class NotesTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+
+    private enum MyColor: Int {
+        case red = 0
+        case orange = 1
+        case purple = 2
+        case blue = 3
+        case green = 4
+
+        func toUIColor() -> UIColor {
+            switch self {
+            case .red:
+                return UIColor.red
+            case .orange:
+                return UIColor.orange
+            case .purple:
+                return UIColor.purple
+            case .blue:
+                return UIColor.blue
+            case .green:
+                return UIColor.green
+            }
+        }
+    }
     
     // MARK: - Actions
     
@@ -44,22 +67,7 @@ final class NotesTableViewController: UITableViewController {
         
         navigationItem.title = selectedList?.title
         
-        var color: UIColor = UIColor.black
-        
-        switch selectedList?.id {
-        case 0:
-            color = UIColor.red
-        case 1:
-            color = UIColor.orange
-        case 2:
-            color = UIColor.purple
-        case 3:
-            color = UIColor.blue
-        case 4:
-            color = UIColor.green
-        default:
-            color = UIColor.black
-        }
+        let color: UIColor = MyColor(rawValue: selectedList!.id)?.toUIColor() ?? UIColor.black
         
         self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
         

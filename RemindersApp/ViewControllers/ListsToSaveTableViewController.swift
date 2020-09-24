@@ -17,6 +17,34 @@ final class ListsToSaveTableViewController: UITableViewController {
                                     "Education",
                                     "Podcasts",
                                     "Books"]
+    private var images: [UIImage?] = [UIImage(systemName: "list.bullet"),
+                                      UIImage(systemName: "desktopcomputer"),
+                                      UIImage(systemName: "square.and.pencil"),
+                                      UIImage(systemName: "music.note"),
+                                      UIImage(systemName: "book")]
+
+    private enum MyColor: Int {
+        case red = 0
+        case orange = 1
+        case purple = 2
+        case blue = 3
+        case green = 4
+
+        func toUIColor() -> UIColor {
+            switch self {
+            case .red:
+                return UIColor.red
+            case .orange:
+                return UIColor.orange
+            case .purple:
+                return UIColor.purple
+            case .blue:
+                return UIColor.blue
+            case .green:
+                return UIColor.green
+            }
+        }
+    }
     private var selectedListIndex: Int? = nil
     private var selectedList: MyList?
     private var numberOfSections: Int = 1
@@ -52,32 +80,9 @@ final class ListsToSaveTableViewController: UITableViewController {
     }
     
     private func setImageView(indexPathRow: Int) -> (UIImage?, UIColor) {
-        
-        let image: UIImage
-        let color: UIColor
-        
-        switch indexPathRow {
-        case 0:
-            image = UIImage(systemName: "list.bullet")!
-            color = UIColor.red
-        case 1:
-            image = UIImage(systemName: "desktopcomputer")!
-            color = UIColor.orange
-        case 2:
-            image = UIImage(systemName: "square.and.pencil")!
-            color = UIColor.purple
-        case 3:
-            image = UIImage(systemName: "music.note")!
-            color = UIColor.blue
-        case 4:
-            image = UIImage(systemName: "book")!
-            color = UIColor.green
-        default:
-            image = UIImage(systemName: "list.bullet")!
-            color = UIColor.black
-        }
+        let image: UIImage = images[indexPathRow] ?? UIImage(systemName: "list.bullet")!
+        let color: UIColor = MyColor(rawValue: indexPathRow)?.toUIColor() ?? UIColor.black
         return (image, color)
-        
     }
     
     // MARK: - Table view delegate
@@ -112,7 +117,6 @@ final class ListsToSaveTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath)
         cell.textLabel?.text = lists[indexPath.row]
         
-        ///Think with enum!!
         (cell.imageView!.image, cell.imageView!.tintColor) = setImageView(indexPathRow: indexPath.row)
         
         if indexPath.row == selectedListIndex {

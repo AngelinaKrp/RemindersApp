@@ -17,6 +17,29 @@ final class SearchTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    private enum MyColor: Int {
+        case red = 0
+        case orange = 1
+        case purple = 2
+        case blue = 3
+        case green = 4
+
+        func toUIColor() -> UIColor {
+            switch self {
+            case .red:
+                return UIColor.red
+            case .orange:
+                return UIColor.orange
+            case .purple:
+                return UIColor.purple
+            case .blue:
+                return UIColor.blue
+            case .green:
+                return UIColor.green
+            }
+        }
+    }
+    
     var lists: [String]!
     
     // MARK: - Lifecycle
@@ -54,21 +77,7 @@ final class SearchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label: UILabel = UILabel()
         label.text = results[section].title
-        
-        switch results[section].id {
-        case 0:
-            label.textColor = UIColor.red
-        case 1:
-            label.textColor = UIColor.orange
-        case 2:
-            label.textColor = UIColor.purple
-        case 3:
-            label.textColor = UIColor.blue
-        case 4:
-            label.textColor = UIColor.green
-        default:
-            label.textColor = UIColor.black
-        }
+        label.textColor = MyColor(rawValue: results[section].id)?.toUIColor()
         label.font = UIFont(name: "ChalkboardSE-Bold", size: 35)
         return label
     }

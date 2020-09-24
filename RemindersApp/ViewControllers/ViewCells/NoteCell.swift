@@ -30,14 +30,17 @@ final class NoteCell: UITableViewCell {
         noteId = model.id
         
         if model.done == true {
-            checkButton.isSelected = true
-            titleLabel.alpha = 0.4
-            subtitleLabel.alpha = 0.4
+            selection(sender: checkButton, isSelected: true, titleAlpha: 0.4, subtitleAlpha: 0.4)
         } else {
-            checkButton.isSelected = false
-            titleLabel.alpha = 1
-            subtitleLabel.alpha = 1
+            selection(sender: checkButton, isSelected: false, titleAlpha: 1, subtitleAlpha: 1)
         }
+    }
+    // MARK: - Private methods
+    
+    private func selection(sender: UIButton, isSelected: Bool, titleAlpha: CGFloat, subtitleAlpha: CGFloat) {
+        sender.isSelected = isSelected
+        titleLabel.alpha = titleAlpha
+        subtitleLabel.alpha = subtitleAlpha
     }
     
     // Configure the view for the selected state
@@ -47,23 +50,13 @@ final class NoteCell: UITableViewCell {
     }
     
     @objc func checkButtonClickes(sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-            titleLabel.alpha = 1
-            subtitleLabel.alpha = 1
-            
-            for noteToSaveId in 0...MyList.defaultLists[listId!].notes.count - 1 {
-                if MyList.defaultLists[listId!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[listId!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+        for (noteToSaveId, _) in MyList.defaultLists[listId!].notes.enumerated() {
+            if MyList.defaultLists[listId!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[listId!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                if sender.isSelected {
+                    selection(sender: sender, isSelected: false, titleAlpha: 1, subtitleAlpha: 1)
                     MyList.defaultLists[listId!].notes[noteToSaveId].done = false
-                }
-            }
-        } else {
-            sender.isSelected = true
-            titleLabel.alpha = 0.4
-            subtitleLabel.alpha = 0.4
-            
-            for noteToSaveId in 0...MyList.defaultLists[listId!].notes.count - 1 {
-                if MyList.defaultLists[listId!].notes[noteToSaveId].title == titleLabel.text && MyList.defaultLists[listId!].notes[noteToSaveId].subtitle == subtitleLabel.text {
+                } else {
+                    selection(sender: sender, isSelected: true, titleAlpha: 0.4, subtitleAlpha: 0.4)
                     MyList.defaultLists[listId!].notes[noteToSaveId].done = true
                 }
             }

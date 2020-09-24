@@ -31,15 +31,13 @@ final class MyListsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set observer to update amount Of list notes
         NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NSNotification.Name(rawValue: "load"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NSNotification.Name(rawValue: "loadMyListsTableViewController"), object: nil)
-        searchResultsController = SearchTableViewController()
-        let searchController = UISearchController(searchResultsController: searchResultsController)
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
+        
+        searchControllerConfiguration()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "AmericanTypewriter", size: 35)!]
@@ -55,6 +53,13 @@ final class MyListsTableViewController: UITableViewController {
             podcastsLabelDetail.text = String(MyList.defaultLists[3].remindersCount)
             booksLabelDetail.text = String(MyList.defaultLists[4].remindersCount)
         }
+    }
+    
+    private func searchControllerConfiguration() {
+        searchResultsController = SearchTableViewController()
+        let searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
     }
     
     // MARK: - Table view delegate
