@@ -76,7 +76,6 @@ final class NewReminderTableViewController: UITableViewController {
         
         // Reload MyListsTableViewController
         NotificationCenter.default.post(name: NotificationCenter.loadName, object: nil)
-        
         // Reload NotesTableViewController
         NotificationCenter.default.post(name: NotificationCenter.loadRemindersName, object: nil)
     }
@@ -91,19 +90,14 @@ final class NewReminderTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == setListSection && indexPath.row == setListRow {
-         //   performSegue(withIdentifier: "toMyListSeletSegue", sender: self)
-            
-          // present NOT segue
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListsToSaveTableViewController") as! ListsToSaveTableViewController
-            vc.selectedLastListString = selectedListToSave
-            navigationController?.pushViewController(vc, animated: true)
+            goToListsToSave()
         }
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-       numberOfSections
+        numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,11 +106,9 @@ final class NewReminderTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let listsToSaveViewController = segue.destination as? UINavigationController else {
-            return
-        }
-        let targetController = listsToSaveViewController.topViewController as! ListsToSaveTableViewController
-        targetController.selectedLastListString = selectedListToSave
+    func goToListsToSave() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ListsToSaveTableViewController") as! ListsToSaveTableViewController
+        vc.selectedLastListString = selectedListToSave
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

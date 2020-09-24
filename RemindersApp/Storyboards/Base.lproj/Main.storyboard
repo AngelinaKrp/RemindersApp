@@ -216,7 +216,7 @@
         <!--Navigation Controller-->
         <scene sceneID="n7a-Z2-xA8">
             <objects>
-                <navigationController id="pfZ-Ms-Xin" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationNewReminder" id="pfZ-Ms-Xin" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sPA-L3-v0C"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PS2-iU-5dc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -316,8 +316,7 @@
                     <toolbarItems>
                         <barButtonItem title="New Reminder" id="KFQ-Zb-sYS">
                             <connections>
-                                <action selector="newReminerTapped:" destination="rY9-cM-Fpl" id="LdR-97-xwn"/>
-                                <segue destination="pfZ-Ms-Xin" kind="show" identifier="newReminderSeletedSegue" id="b0n-Kj-IH1"/>
+                                <action selector="newReminerTapped:" destination="rY9-cM-Fpl" id="fPJ-ll-DyV"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -329,12 +328,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIm-jC-4C5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="941.60000000000002" y="859.52023988005999"/>
+            <point key="canvasLocation" x="1742" y="895"/>
         </scene>
         <!--New Reminder-->
         <scene sceneID="Pcw-R3-F6g">
             <objects>
-                <tableViewController id="C9v-hS-aiF" customClass="NewReminderTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewReminderTableViewController" id="C9v-hS-aiF" customClass="NewReminderTableViewController" customModule="RemindersApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="pcb-Vv-Asx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -530,9 +529,6 @@
             <point key="canvasLocation" x="3207" y="123"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Ehv-zE-XeQ"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>

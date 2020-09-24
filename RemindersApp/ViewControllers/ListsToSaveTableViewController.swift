@@ -57,7 +57,6 @@ final class ListsToSaveTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func returnButton(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -132,7 +131,7 @@ final class ListsToSaveTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "SaveSelectedList" {

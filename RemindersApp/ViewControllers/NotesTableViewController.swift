@@ -53,8 +53,8 @@ final class NotesTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func newReminerTapped(_ sender: Any) {
-        performSegue(withIdentifier: "newReminderSeletedSegue", sender: self)
+    @IBAction func newReminerTapped(_ sender: UIButton) {
+        navigation()
     }
     
     // MARK: - Lifecycle
@@ -131,14 +131,12 @@ final class NotesTableViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let newReminderViewController = segue.destination as? UINavigationController else {
-            return
-        }
-        let targetController = newReminderViewController.topViewController as! NewReminderTableViewController
-        // Pass the selected object to the new view controller.
-        targetController.selectedListToSave = String(selectedList!.title)
-    }
+    func navigation() {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "navigationNewReminder") as! UINavigationController
+        let nav = vc.viewControllers.first as? NewReminderTableViewController
+        nav?.selectedListToSave = String(selectedList!.title)
+            present(vc, animated: true)
+     }
 }
 extension NotificationCenter {
     static let loadRemindersName = NSNotification.Name(rawValue: "loadReminders")
