@@ -62,15 +62,8 @@ final class NotesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.largeTitleDisplayMode = .always
-        NotificationCenter.default.addObserver(self, selector: #selector(getNotes), name: NSNotification.Name(rawValue: "loadReminders"), object: nil)
-        
-        navigationItem.title = selectedList?.title
-        
-        let color: UIColor = MyColor(rawValue: selectedList!.id)?.toUIColor() ?? UIColor.black
-        
-        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(getNotes), name: NotificationCenter.loadRemindersName, object: nil)
+        navigationaSettings()
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(getNotes), for: .valueChanged)
         getNotes()
@@ -80,7 +73,7 @@ final class NotesTableViewController: UITableViewController {
         super.viewDidDisappear(true)
         
         // Reload MyListsTableViewController
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadMyListsTableViewController"), object: nil)
+        NotificationCenter.default.post(name: NotificationCenter.loadMyListsName, object: nil)
     }
     
     // MARK: - Private methods
@@ -90,6 +83,12 @@ final class NotesTableViewController: UITableViewController {
         self.notes = MyList.defaultLists[selectedList!.id].notes
     }
     
+    private func navigationaSettings() {
+        self.navigationItem.largeTitleDisplayMode = .always
+        navigationItem.title = selectedList?.title
+        let color: UIColor = MyColor(rawValue: selectedList!.id)?.toUIColor() ?? UIColor.black
+        self.navigationController!.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Bold", size: 35)!]
+    }
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -140,4 +139,7 @@ final class NotesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         targetController.selectedListToSave = String(selectedList!.title)
     }
+}
+extension NotificationCenter {
+    static let loadRemindersName = NSNotification.Name(rawValue: "loadReminders")
 }

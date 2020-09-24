@@ -32,8 +32,8 @@ final class MyListsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set observer to update amount Of list notes
-        NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NSNotification.Name(rawValue: "load"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NSNotification.Name(rawValue: "loadMyListsTableViewController"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NotificationCenter.loadName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getAmountOfMyLists), name: NotificationCenter.loadMyListsName, object: nil)
         
         searchControllerConfiguration()
     }
@@ -117,4 +117,8 @@ extension MyListsTableViewController: UISearchResultsUpdating {
         }
         searchResultsController?.setNew(results: copyOfMyLists)
     }
+}
+extension NotificationCenter {
+    static let loadName = NSNotification.Name(rawValue: "load")
+    static let loadMyListsName = NSNotification.Name(rawValue: "loadMyListsTableViewController")
 }
