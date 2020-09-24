@@ -75,10 +75,10 @@ final class NewReminderTableViewController: UITableViewController {
         super.viewDidDisappear(true)
         
         // Reload MyListsTableViewController
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NotificationCenter.loadName, object: nil)
         
         // Reload NotesTableViewController
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadReminders"), object: nil)
+        NotificationCenter.default.post(name: NotificationCenter.loadRemindersName, object: nil)
     }
     
     // MARK: - Private methods
